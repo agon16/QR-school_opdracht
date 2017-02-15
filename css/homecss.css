@@ -1,0 +1,245 @@
+
+.main > figure{
+		/*background-image: url('../img/startup-photos-1.jpg');
+		background-image: url('../img/DSC_0121.jpg');*/
+backface-visibility: hidden;
+animation: imageAnimation 15s linear infinite 0s; 
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
+  color:#000;
+  height:100%;
+  left: 0;
+  top: 0;
+  opacity:0;
+  position:fixed;
+  /*bottom: 0;
+  right: 0;*/
+  width:100%;
+  z-index: 0;
+ 
+
+}
+
+.main  > figure:nth-child(1){
+	
+	background-image: url('../img/startup-photos-1.jpg');
+}
+.main  > figure:nth-child(2){
+	animation-delay: 5s;
+	background-image: url('../img/download.jpg');
+}
+.main  > figure:nth-child(3){
+	animation-delay: 10s;
+	background-image: url('../img/surinamebanner-javanese-940x400.jpg');}
+
+/*.main > figure:nth-child(4) {
+  animation-delay: 18s;
+  background-image: url('../img/yeah.jpg');
+}
+
+.main > figure:nth-child(5) {
+  animation-delay: 24s;
+  background-image: url('../img/onlineregistration.jpg');
+}*/
+
+
+
+
+
+
+@keyframes imageAnimation {  
+0% {
+ animation-timing-function: ease-in;
+ 
+  opacity:0;
+}
+8% {
+animation-timing-function: ease-out;
+opacity:1;
+}
+17% {
+opacity:1;
+}
+25% {
+opacity:0;
+}
+ 100% {
+opacity:0;
+}
+}
+
+
+
+
+/*#main div:nth-of-type(1) {
+  animation-delay: 27s;
+  /*-webkit-animation-delay: 8s;
+}
+#main div:nth-of-type(2) {
+  animation-delay:16s;
+  /*-webkit-animation-delay: 6s;
+  
+}
+
+#main div:nth-of-type(3) {
+  animation-delay: 8s;
+
+}
+
+#main div:nth-of-type(4) {
+  animation-delay: 8s;
+
+}
+
+#main div:nth-of-type(5) {
+  animation-delay: 0;
+ 
+}
+
+
+#main div {
+animation-name: mainFadeInOut;
+animation-timing-function: linear;
+animation-iteration-count: infinite;
+animation-duration: 2s;
+
+-webkit-animation-name: mainFadeInOut;
+-webkit-animation-timing-function: linear;
+-webkit-animation-iteration-count: infinite;
+-webkit-animation-duration: 2s;*/
+
+}
+
+
+.navbar{
+	position: absolute;
+	background-color: #95a5a6;
+	height: 11%;
+	
+
+
+}
+.nav p {
+	position: absolute;
+	color: white;
+	font-family: Rockwell; 
+	font-size: 30px;
+	float: left!important;
+	top: 18.5px;
+}
+
+.user{
+	position: absolute;
+	color:white!important;
+	float: left!important;
+	right: 26%;
+	padding-top:2.1%;
+	font-size: 174%;
+}
+
+.form{
+	 position: absolute;
+    /* display: inline; */
+    right: 5%;
+    float: right!important;
+    top:20%;
+
+     
+}
+.pan{
+
+	position: absolute;
+	top: 17%;
+	float: right!important;
+	left:65%;
+	opacity: 0.8;
+	width: 30%;
+}
+.panel {
+    background-color:rgba(255, 255, 255, 0.03) !important;
+}
+
+.panstuff{
+	text-align: center;
+	font-family: Rockwell;
+	color:white; 
+	background: #373b40;
+	border-radius: 10px;
+
+}
+
+.qr{
+	width: 30%;
+	background-color: black;
+}
+
+#eloket{
+	position: fixed;
+	color: #d9836e;
+	left: 11.5%;
+	top: 29%;
+	font-family:Century Gothic;
+	font-weight:bold;
+	font-size:100px;
+	text-shadow: 1px 1px 2px #6C7A89;
+	
+}
+
+#burgerzaken{
+	position: fixed;
+	color: #d9836e;
+	left: 5%;
+	top: 46%;
+	font-family:Century Gothic;
+	font-weight:bold;
+	font-size:60px;
+	text-shadow: 1px 1px 2px #6C7A89;
+}
+
+#scan{
+	position: fixed;
+	color: #d9836e;
+	left: 15%;
+	top: 62%;
+	font-family:Century Gothic;
+	font-weight:bold;
+	text-shadow: 1px 1px 2px #6C7A89;
+	
+}
+/*test*/
+@media screen and (max-width: 480px) {
+	body{background-image: url('../img/DSC_0121.jpg');
+	 -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+	 background-size: 400%;	 
+}
+    .panstuff h2 {
+        font-size: 15px !important;
+    }
+
+    .pan{
+    	position: absolute;
+	top: 25%;
+	left:14%;
+	opacity: 0.8;
+	width: 73%;
+    }
+	
+	#burgerzaken{
+		visibility: hidden;
+	}
+	
+	#eloket{
+		visibility: hidden;
+	}
+	
+	#scan{
+		visibility: hidden;
+	}
+
+}
+}
