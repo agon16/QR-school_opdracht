@@ -36,14 +36,7 @@
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="mailbox.html">Mailbox</a></li>
-                                <li class="divider"></li>
-                                <li><a href="login.html">Logout</a></li>
-                            </ul>
+                             </span></span> </a>
                         </div>
                         <div class="logo-element">
                             IN+
@@ -76,62 +69,59 @@
         </div>
         </nav>
         </div>
-                <div class="row  border-bottom white-bg dashboard-header">
+        <div class="row  border-bottom white-bg dashboard-header">
 
-
-            </div>
-        <div class="row">
+        </div>
+        <div class="row white-bg">
             <div class="col-lg-12">
                 <div class="wrapper wrapper-content">
-                        <div class="row"><!--content-->
-              <form method="POST" action="">              
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>User</h5>
-                                <a href="user_detail.html">wfwefdwefwefwe</a>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>Firstname </th>
-                                            <th>Lastname </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-    <?php
-        $sql = "SELECT * FROM users";
-        $result = $con->query($sql);
-
-        if ($result->num_rows > 0) {
-           
-            while($row = $result->fetch_assoc()) {
-                echo "<tr>
-                    <td>".$row["firstname"]."</td>
-                    <td>".$row["lastname"]."</td>
-                    <td><button type='button' class='btn btn-w-m btn-primary'>view user</button></td>
-                </tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "0 results";
-        }
-        $con->close();
-    ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
+                    <form method="POST" action="">
+                        <h2>QR Code Generator</h2>
+                        <div class="col-md-3">
+                        <ul class="list-group clear-list m-t">
+                            <li class="list-group-item fist-item">
+                                <span class="pull-right">
+                                    FB23242
+                                </span>
+                                <p><label  style="display: inline-block; width: 100px;" class="">IDnummer</label>:</p>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="pull-right">
+                                    Agon
+                                </span>
+                                <p><label  style="display: inline-block; width: 100px;" class="">Firstname</label>:</p>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="pull-right">
+                                    Emanuel
+                                </span>
+                                <p><label  style="display: inline-block; width: 100px;" class="">Lastname</label>:</p>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="pull-right">
+                                    51
+                                </span>
+                                <p><label style="display: inline-block; width: 100px;" class="">Age</label>:</p>
+                            </li>
+                        </ul>
+                        <br>
+                        <button type="button" class="btn btn-w-m btn-success">Generate</button>
+                        <br>
+                        <br>
+                        <br>
                     </div>
-
-                </div>
-            </form>
-            </div>
+                    <!-- <div class="col-md-3"></div> -->
+                    <div class="col-md-offset-4 col-md-3">
+                        <div style="width: 165px;" class="panel panel-success">
+                                        <div class="panel-heading">
+                                            QR code
+                                        </div>
+                                        <div class="panel-body">
+                                            <img style="height: 130px;" src="img/project_img/qrcode.jpg" alt="">
+                                        </div>
+                                    </div>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
