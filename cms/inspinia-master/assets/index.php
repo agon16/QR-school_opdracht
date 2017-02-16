@@ -50,7 +50,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-user"></i> <span class="nav-label">user</a>
+                        <a href="index.php"><i class="fa fa-user"></i> <span class="nav-label">Home</a>
                     </li>
                     <li>
                         <a href="qrregistreted.php"><i class="fa fa-qrcode"></i> <span class="nav-label">Qr code registrated</a>
@@ -76,61 +76,78 @@
         </div>
         </nav>
         </div>
-                <div class="row  border-bottom white-bg dashboard-header">
-
-
+            <div class="row  border-bottom white-bg dashboard-header">
             </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="wrapper wrapper-content">
-                        <div class="row"><!--content-->
-              <form method="POST" action="">              
+                        <div class="row"><!--content-->             
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <h5>User</h5>
-                                <a href="user_detail.html">wfwefdwefwefwe</a>
                             </div>
                             <div class="ibox-content">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
+                                            <th></th>
                                             <th>Firstname </th>
                                             <th>Lastname </th>
+                                            <th>QR Code registered</th>
+                                            <th>Activation</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-    <?php
-        $sql = "SELECT * FROM users";
-        $result = $con->query($sql);
+        <?php
+            $sql = "SELECT * FROM users";
+            $result = $con->query($sql);
 
-        if ($result->num_rows > 0) {
-           
-            while($row = $result->fetch_assoc()) {
-                echo "<tr>
-                    <td>".$row["firstname"]."</td>
-                    <td>".$row["lastname"]."</td>
-                    <td><button type='button' class='btn btn-w-m btn-primary'>view user</button></td>
-                </tr>";
+            if ($result->num_rows > 0) {
+               
+                while($row = $result->fetch_assoc()) {
+                    $active = $row["active"];
+                    $status = $row["active"];
+                    if($active == 0){
+                        $active = "<span class='label label-danger'>Inactive</span>";
+                    }
+                    elseif ($active == 1) {
+                        $active = "<span class='label label-primary'>Active</span>";
+                    }
+
+                    $generate = $active;
+
+
+                    echo "<tr>
+                        <td>".$row["id"]."</td><td>".$row["firstname"]."
+                        </td>
+                        <td>
+                            ".$row["lastname"]."
+                        </td>
+
+                        <td>
+                            ".$active."
+                        </td>
+                        <td>
+                            <a href='user_detail.php?id=".$row["id"]."' class='btn btn-primary'>Explore</a>
+                        </td>
+                    </tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "0 results";
             }
-            echo "</table>";
-        } else {
-            echo "0 results";
-        }
-        $con->close();
-    ?>
+            $con->close();
+        ?>
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </form>
             </div>
                 </div>
             </div>
@@ -181,17 +198,6 @@
 
     <script>
         $(document).ready(function() {
-            setTimeout(function() {
-                toastr.options = {
-                    closeButton: true,
-                    progressBar: true,
-                    showMethod: 'slideDown',
-                    timeOut: 4000
-                };
-                toastr.success('CMS van CBB', 'Welcome to identify me');
-
-            }, 1300);
-
 
             var data1 = [
                 [0,4],[1,8],[2,5],[3,10],[4,4],[5,16],[6,5],[7,11],[8,6],[9,11],[10,30],[11,10],[12,13],[13,4],[14,3],[15,3],[16,6]

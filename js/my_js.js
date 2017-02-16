@@ -29,8 +29,8 @@ $(document).ready(function () {
   //Initialize QR Scanner
   $('#scan_init').click(function() {
     $('#scanner').html5_qrcode(function(qrData) {
-        // console.log(qrData);
-        $.post('backend/api.php', {id: qrData}, function(data) {
+        console.log(qrData);
+        $.post('backend/api.php', {data: qrData}, function(data) {
           data = JSON.parse(data);
           if(data.result == "true") {
             $('[name="username"]').val(data.username);

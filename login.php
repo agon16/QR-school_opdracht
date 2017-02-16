@@ -51,9 +51,6 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <script type="text/javascript">
-        var username_encryption = '<?php echo $username_encryption; ?>';
-    </script>
     </head>
 
 <body style="background-color:#000;">
@@ -156,6 +153,12 @@ E-loket
 <!-- QR-Code JS -->
 <script type="text/javascript" src="js/html5-qrcode.min.js"></script>
 <script type="text/javascript" src="js/my_js.js"></script>
+<script type="text/javascript">
+    var username_encryption = '<?php echo $username_encryption; ?>';
+    if(username_encryption == 'enabled') {
+        $('[name="username"]').attr('text', 'password');
+    }
+</script>
 
 </body>
 

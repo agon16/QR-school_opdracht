@@ -108,7 +108,7 @@
                                         <tbody>
 
     <?php
-        $sql = "SELECT * FROM user WHERE id ";
+        $sql = "SELECT * FROM users";
         $result = $con->query($sql);
 
         if ($result->num_rows > 0) {
