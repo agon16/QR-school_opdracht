@@ -50,7 +50,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-user"></i> <span class="nav-label">Home</a>
+                        <a href="index.php"><i class="fa fa-user"></i> <span class="nav-label">user</a>
                     </li>
                     <li>
                         <a href="qrregistreted.php"><i class="fa fa-qrcode"></i> <span class="nav-label">Qr code registrated</a>
@@ -81,79 +81,25 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="wrapper wrapper-content">
-                        <div class="row"><!--content-->             
+                        <div class="row"><!--content-->
+              <form method="POST" action="">              
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>User</h5>
+                                <h5>Registratie melding</h5>
                             </div>
                             <div class="ibox-content">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Firstname </th>
-                                            <th>Lastname </th>
-                                            <th>QR Code registered</th>
-                                            <th>Activation</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-        <?php
-            $sql = "SELECT * FROM users";
-            $result = $con->query($sql);
+                                <p>De gebruiker behoort eerst geregistreerd te zijn. Maak contact met de gebruiker om te registeren via de <a href="../../../index.php">IdentifyMe</a> web applicatie.</p>
 
-            if ($result->num_rows > 0) {
-               
-                while($row = $result->fetch_assoc()) {
-                    $active = $row["active"];
-                    $status = $row["active"];
-                    if($active == 0){
-                        $active = "Inactive";
-                    }
-                    elseif ($active == 1) {
-                        $active = "Active";
-                    }
+                                <a class="btn btn-default" href="qrregistreted.php">Ga terug</a>
 
-                    $generate = $active;
-                    if($status == 0){
-                        $generate = "<button type='button' class='btn btn-w-m btn-danger'>Generate</button>";
-                    }
-                    elseif ($status == 1) {
-                        $generate = " <button type='button' class='btn btn-w-m btn-success'>Re-generate</button>";
-                    }
-
-
-                    echo "<tr>
-                        <td>".$row["id"]."</td><td>".$row["firstname"]."
-                        </td>
-                        <td>
-                            ".$row["lastname"]."
-                        </td>
-
-                        <td>
-                            ".$active."
-                        </td>
-                        <td>
-                            ".$generate."
-                        </td>
-                    </tr>";
-                }
-                echo "</table>";
-            } else {
-                echo "0 results";
-            }
-            $con->close();
-        ?>
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+            </form>
             </div>
                 </div>
             </div>
@@ -292,47 +238,47 @@
                 animateScale: false,
             };
 
-            var ctx = document.getElementById("doughnutChart").getContext("2d");
-            var DoughnutChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
+            // var ctx = document.getElementById("doughnutChart").getContext("2d");
+            // var DoughnutChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
 
-            var polarData = [
-                {
-                    value: 300,
-                    color: "#a3e1d4",
-                    highlight: "#1ab394",
-                    label: "App"
-                },
-                {
-                    value: 140,
-                    color: "#dedede",
-                    highlight: "#1ab394",
-                    label: "Software"
-                },
-                {
-                    value: 200,
-                    color: "#b5b8cf",
-                    highlight: "#1ab394",
-                    label: "Laptop"
-                }
-            ];
+            // var polarData = [
+            //     {
+            //         value: 300,
+            //         color: "#a3e1d4",
+            //         highlight: "#1ab394",
+            //         label: "App"
+            //     },
+            //     {
+            //         value: 140,
+            //         color: "#dedede",
+            //         highlight: "#1ab394",
+            //         label: "Software"
+            //     },
+            //     {
+            //         value: 200,
+            //         color: "#b5b8cf",
+            //         highlight: "#1ab394",
+            //         label: "Laptop"
+            //     }
+            // ];
 
-            var polarOptions = {
-                scaleShowLabelBackdrop: true,
-                scaleBackdropColor: "rgba(255,255,255,0.75)",
-                scaleBeginAtZero: true,
-                scaleBackdropPaddingY: 1,
-                scaleBackdropPaddingX: 1,
-                scaleShowLine: true,
-                segmentShowStroke: true,
-                segmentStrokeColor: "#fff",
-                segmentStrokeWidth: 2,
-                animationSteps: 100,
-                animationEasing: "easeOutBounce",
-                animateRotate: true,
-                animateScale: false,
-            };
-            var ctx = document.getElementById("polarChart").getContext("2d");
-            var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
+            // var polarOptions = {
+            //     scaleShowLabelBackdrop: true,
+            //     scaleBackdropColor: "rgba(255,255,255,0.75)",
+            //     scaleBeginAtZero: true,
+            //     scaleBackdropPaddingY: 1,
+            //     scaleBackdropPaddingX: 1,
+            //     scaleShowLine: true,
+            //     segmentShowStroke: true,
+            //     segmentStrokeColor: "#fff",
+            //     segmentStrokeWidth: 2,
+            //     animationSteps: 100,
+            //     animationEasing: "easeOutBounce",
+            //     animateRotate: true,
+            //     animateScale: false,
+            // };
+            // var ctx = document.getElementById("polarChart").getContext("2d");
+            // var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
 
         });
     </script>

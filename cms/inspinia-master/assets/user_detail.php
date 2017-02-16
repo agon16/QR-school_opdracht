@@ -1,5 +1,93 @@
 <?php
+
+    session_start();
+
     include '../../../backend/config.php';
+
+    if(isset($_POST['deactivate'])) {
+
+        $user_id = $_POST['user_id'];
+        $sql = "UPDATE users SET active = 0 WHERE id = '$user_id'";
+        $con->query($sql);
+
+        header("Location: index.php");
+    } else if(isset($_POST['activate'])) {
+
+        $user_id = $_POST['user_id'];
+        $sql = "UPDATE users SET active = 1 WHERE id = '$user_id'";
+        $con->query($sql);
+
+        header("Location: index.php");
+    } else if(isset($_POST['generate'])) {
+        $user_id = $_POST['user_id'];
+        
+ 
+    } else if(isset($_POST['recharge'])) {
+        $user_id = $_POST['user_id'];
+        $amount = $_POST['amount'];
+
+        $sql = "SELECT credits FROM users WHERE id = '$user_id'";
+        $query = $con->query($sql);
+        $credits = '';
+        while ($row = $query->fetch_assoc()) {
+            $credits = $row['credits'];
+        }
+
+        $credits += $amount; //Sum credits with amount
+
+        //Update creditss
+        $sql = "UPDATE users SET credits = '$credits' WHERE id = '$user_id'";
+        $con->query($sql);
+
+        header("Location: index.php");
+ 
+    } else if(isset($_GET['id'])) { //If user ID is set in url. Else terminate page
+        $user_id = $_GET['id'];
+        $sql = "SELECT * FROM users WHERE id = '$user_id'";
+        $query = $con->query($sql);
+        while($result = $query->fetch_assoc()) {
+            $id_card = $result['id_card'];
+            $firstname = $result['firstname'];
+            $lastname = $result['lastname'];
+            $birth = $result['birth_date'];
+            $gender = ucfirst($result['gender']);
+            $active = $result['active'];
+
+            $birth_parts = explode('-', $birth);
+            $year = $birth_parts[0];
+            $month = $birth_parts[1];
+            $day = $birth_parts[2];
+            $current_year = date('Y');
+            $current_month = date('m');
+            $current_day = date('d');
+
+            $date = $year.'-'.$month.'-'.$day;
+            $age = '';
+
+            //Calculate age
+            $sql_age = "SELECT TIMESTAMPDIFF(YEAR, '$date', CURDATE()) AS age";
+            $query_age = $con->query($sql_age);
+            while($row = $query_age->fetch_assoc()) {
+                $age = $row['age'];
+            }
+
+            if($active == 1) {
+                $active_text = '<button type="submit" name="deactivate" class="btn btn-w-m btn-danger">Account deactiveren</button>';
+                $generate_qrcode = '<button type="submit" name="generate" class="btn btn-w-m btn-primary">Generate QR-Code</button>';
+                $credits_text = '<button type="button" class="btn btn-w-m btn-success" data-toggle="modal" data-target="#myModal">Credits opwaarderen</button>';
+                $active_status = 'Activated';
+            } else {
+                $active_text = '<button name="activate" type="submit" class="btn btn-w-m btn-primary">Account activeren</button>';
+                $generate_qrcode = '';
+                $credits_text = '';
+                $active_status = 'Not activated';
+            }
+        }
+        $con->close(); //Close connection
+    } else {
+        header("Location: 404.php");
+    }
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +131,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-user"></i> <span class="nav-label">user</a>
+                        <a href="index.php"><i class="fa fa-user"></i> <span class="nav-label">Home</a>
                     </li>
                     <li>
                         <a href="qrregistreted.php"><i class="fa fa-qrcode"></i> <span class="nav-label">Qr code registrated</a>
@@ -75,58 +163,105 @@
         <div class="row white-bg">
             <div class="col-lg-12">
                 <div class="wrapper wrapper-content">
-                    <form method="POST" action="">
-                        <h2>QR Code Generator</h2>
+                        <h2>User details</h2>
                         <div class="col-md-3">
                         <ul class="list-group clear-list m-t">
                             <li class="list-group-item fist-item">
                                 <span class="pull-right">
-                                    FB23242
+                                    <?php echo $id_card; ?>
                                 </span>
                                 <p><label  style="display: inline-block; width: 100px;" class="">IDnummer</label>:</p>
                             </li>
                             <li class="list-group-item">
                                 <span class="pull-right">
-                                    Agon
+                                    <?php echo $firstname; ?>
                                 </span>
                                 <p><label  style="display: inline-block; width: 100px;" class="">Firstname</label>:</p>
                             </li>
                             <li class="list-group-item">
                                 <span class="pull-right">
-                                    Emanuel
+                                    <?php echo $lastname; ?>
                                 </span>
                                 <p><label  style="display: inline-block; width: 100px;" class="">Lastname</label>:</p>
                             </li>
                             <li class="list-group-item">
                                 <span class="pull-right">
-                                    51
+                                    <?php echo $age; ?>
                                 </span>
                                 <p><label style="display: inline-block; width: 100px;" class="">Age</label>:</p>
                             </li>
+                            <li class="list-group-item">
+                                <span class="pull-right">
+                                    <?php echo $gender; ?>
+                                </span>
+                                <p><label style="display: inline-block; width: 100px;" class="">Gender</label>:</p>
+                            </li><li class="list-group-item">
+                                <span class="pull-right">
+                                    <?php echo $active_status; ?>
+                                </span>
+                                <p><label style="display: inline-block; width: 100px;" class="">Status</label>:</p>
+                            </li>
                         </ul>
                         <br>
-                        <button type="button" class="btn btn-w-m btn-success">Generate</button>
+                        
                         <br>
                         <br>
                         <br>
                     </div>
                     <!-- <div class="col-md-3"></div> -->
                     <div class="col-md-offset-4 col-md-3">
-                        <div style="width: 165px;" class="panel panel-success">
-                                        <div class="panel-heading">
-                                            QR code
-                                        </div>
-                                        <div class="panel-body">
-                                            <img style="height: 130px;" src="img/project_img/qrcode.jpg" alt="">
-                                        </div>
-                                    </div>
+                        <!-- <div style="width: 165px;" class="panel panel-success">
+                            <div class="panel-heading">
+                                QR code
+                            </div>
+                            <div class="panel-body">
+                                <img style="height: 130px;" src="img/project_img/qrcode.jpg" alt="">
+                            </div>
+                        </div> -->
+                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                            <?php echo $generate_qrcode; ?>
+                            <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                        </form>
+                            <br>
+                            <?php echo $credits_text; ?>
+                            
+                            <br><br>
+                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                            <?php echo $active_text; ?>
+                            <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                        </form>
+                        
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
 
         </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Voeg credits toe voor de gebruiker</h4>
+              </div>
+              <div class="modal-body">
+                <!-- <img src="qrcode.jpg" width="150" class="img-responsive center-block"> -->
+                <div align="center">
+                    <p>Geef aan het aantal credits.</p>
+                    <input placeholder="5.25" class="form-control" type="text" name="amount" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 0 || event.charCode == 46'>
+                    <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" name="recharge" class="btn btn-default">Submit</button>
+              </div>
+            </div>
+        </form>
+      </div>
     </div>
 
     <!-- Mainly scripts -->
@@ -171,16 +306,6 @@
 
     <script>
         $(document).ready(function() {
-            setTimeout(function() {
-                toastr.options = {
-                    closeButton: true,
-                    progressBar: true,
-                    showMethod: 'slideDown',
-                    timeOut: 4000
-                };
-                toastr.success('CMS van CBB', 'Welcome to identify me');
-
-            }, 1300);
 
 
             var data1 = [
