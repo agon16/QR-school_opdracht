@@ -27,8 +27,10 @@
         $qrcode = $_GET['qrcode'];
         echo $qrcode;
         $username_encryption = 'enabled';
+        $username_input = '<input type="text" class="form-control" placeholder="Gebruikersnaam" name="username">';
     } else {
         $username_encryption = 'disabled';
+        $username_input = '<input type="text" class="form-control" placeholder="Gebruikersnaam" name="username">';
     }
     
 ?>
@@ -75,7 +77,7 @@
 
                         <form class="navbar-form navbar-right form" role="search" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                             <div>
-                                <input type="text" class="form-control" placeholder="Gebruikersnaam" name="username">
+                                <?php echo $username_input; ?>
 
                                 <input type="password" class="form-control" placeholder="Wachtwoord" name="password">
 

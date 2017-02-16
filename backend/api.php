@@ -2,8 +2,8 @@
 
 require 'config.php';
 
-// @$data = $_POST['data'];
-$data = 'qr_data_of_tim';
+@$data = $_POST['data'];
+// $data = 'qr_data_of_tim';
 
 $sql = "SELECT user_id FROM qr_data WHERE data = '$data'";
 $user_id = '';
