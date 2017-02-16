@@ -1,16 +1,23 @@
 <?php 
   session_start();
 
-  if (isset($_SESSION['usr_id'])) {
-    header("Location: index.php");
+  if(isset($_SESSION['user_id'])) {
+    header("Location: login.php");
   }
+
+  // $errMsg = '';
+  // if(isset($_SESSION['errMsg'])) {
+  //   $errMsg = $_SESSION['errMsg'];
+  // }
+  if(!isset($errMsg)) {
+    $errMsg = '';
+  }
+
+  unset($_SESSION['errMsg']);
 
   include('backend/config.php');
 
   //set validation error flag as false
-  $error = false;
-  $name= "String";
-
  
  ?>
 <!DOCTYPE html>
@@ -49,26 +56,61 @@
             <h2 style="height:65px; text-align: center;" class="form-signin-heading">Registratie</h2>
             
               <!-- <label for="text" class="sr-only">ID nummer</label> -->
-            <input type="text" name="id_nummer" id="id_nummer" class="form-control" placeholder="ID-nummer" required="" autofocus="">
+            <input type="text" name="id_card" id="id_card" class="form-control" placeholder="ID-nummer" required="" autofocus="">
               <br>
             <!-- <label for="inputPassword" class="sr-only">Password</label> -->
   		  
-  		      <input type="text" name="gebruikersnaam" id="gebruikersnaam" class="form-control" placeholder="Gebruikersnaam" required="" autofocus="" value="<?php if($error) echo $name; ?>">
-            <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span> 
+  		      <input type="text" name="username" id="username" class="form-control" placeholder="Gebruikersnaam" required="" autofocus="">
               <br>
-  		      <input type="text" name="email_adress" id="email_adress" class="form-control" placeholder="E-mailadres" required="" autofocus="" value="<?php if($error) echo $email; ?>"><span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
+  		      <input type="text" name="email" id="email" class="form-control" placeholder="E-mailadres" required="" autofocus="">
+              <br>
+            <input type="text" name="telephone" id="telephone" class="form-control" placeholder="Telefoon" required="" autofocus="">
               <br>
             <input type="password" name="password" id="password" class="form-control" placeholder="Wachtwoord" required="">
-            <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
             <br>
             <p><input name="action" type="hidden" value="login"></p>
             <button type="submit" class="btn btn-default btn-block" name="signup">Registreren</button>
             <br>
           <p style="font-size: 20px;">Inloggen met: <a style="text-decoration:none; font-size:20px;" href="login.php" class="btn"><i class="glyphicon glyphicon-qrcode"></i> QR-Code</a></p>
-        </div>
-         <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
-            <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
 
+          <?php
+          //check if form is submitted
+          if(isset($_POST['signup'])) {
+            $id_card = $_POST['id_card'];
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $telephone = $_POST['telephone'];
+            $password = $_POST['password'];
+
+            $sql_det = "SELECT * FROM users WHERE id_card = '$id_card'";
+            $result_det = $con->query($sql_det);
+
+            $sql = "UPDATE users SET username = '$username', email = '$email', telephone = '$telephone', password = '$password' WHERE id_card = '$id_card'";
+
+            if($result_det) {
+              if ($result_det->num_rows > 0) {
+                $con->query($sql);
+                header("Location: login.php");
+                echo "OK";
+              } else if($result_det->num_rows == 0) {
+                echo '<div class="alert alert-danger" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                  ID kaart niet geldig.
+                </div>';
+              }
+            } else {
+              echo '<div class="alert alert-danger" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                  Problemen met registreren. Probeer het opnieuw a.u.b.
+                </div>';
+            }
+          }
+
+        ?>
+
+        </div>
       </div> <!-- /container -->
     </form>
 
@@ -80,49 +122,3 @@
     <script src="npm.js"></script>
   </body>
 </html>
-
-<?php
- //check if form is submitted
-
-  if (isset($_POST['signup'])) {
-    $id_nummer = $_POST['id_nummer'];
-    $gebruikersnaam = $_POST['gebruikersnaam'];
-    $email = $_POST['email_adress'];
-    $password = $_POST['password'];
-
-    //naam bevat alleen letter en spatie
-    // if (!preg_match("/^[a-zA-Z ]+$/", $name)) {
-    //   $error = true;
-    //   $name_error = "Naam moet alleen letter en spatie bevatten";
-    // }
-
-    // if (!filter_var($email_adress,FILTER_VALIDATE_EMAIL)) {
-    //   $error = true;
-    //   $email_error = "Vul graag een goed email adress";
-    // }
-    // if (strlen($password) < 6) {
-    //   $error = true;
-    //   $password = "Uw wachtwoord moet minimaal 6 karakters";
-    // }
-    // if (strlen($id_nummer) == 8) {
-    //   $error = true;
-    //   $password = "Uw ID nummer moet 8 karakters bevatten inclusief spatie";
-    // }
-
-    // if (!$error) {
-    //     if(mysqli_query($con, "INSERT INTO user (firstname, email, password) VALUES'$gebruikersnaam', '$email_adress', '$password')")) {
-    //         $successmsg = "Succesvol geregistreerd! <a href='home.html'>Click here to Login</a>";
-    //     } else {
-    //         $errormsg = "Problemen met registreren ... Probeer het opnieuw!";
-    //     }
-    // }
-    $sql = "INSERT INTO user (firstname, email, password) VALUES ('$gebruikersnaam', '$email', '$password')";
-    if($con->query($sql)) {
-          $successmsg = "Succesvol geregistreerd! <a href='home.html'>Click here to Login</a>";
-      } else {
-          // $errormsg = "Problemen met registreren ... Probeer het opnieuw!";
-        echo mysqli_error($con);
-      }
-
-  }
-?>
