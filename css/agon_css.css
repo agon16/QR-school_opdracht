@@ -1,0 +1,65 @@
+.main_uittreksel{
+	margin: 0 100px 0 100px;
+}
+.cbb_gegevens p{
+	display: inline-block;
+	vertical-align: top;
+}
+.cbb_bevolking h3{
+	text-align: center;
+}
+
+.cbb_bevolking hr{
+	margin: 0 280px 0 280px;
+}
+.txtb_size{
+	size: 35;
+}
+.center{
+	position: absolute;
+	left: 50%;
+}
+.lbl_grote_170{
+	width: 170px;
+	margin-right: 5px;
+}
+.lbl_grote_80{
+	width: 90px;
+	margin-right: 5px;
+}
+.hoofd_letter{
+	text-transform: uppercase;
+}
+.lbl_border{
+	border-style: solid;
+    border-width: 1px;
+}
+.mb-r{
+	margin-right: 5px;
+}
+
+/* Flaired edges, by Tomas Theunissen */
+
+hr.style-seven {
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+hr.style-seven:before { /* Not really supposed to work, but does */
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+}
+
+.container{/*
+	top: 30%;
+	left: 0px;
+	right: 0px;*/
+
+}
