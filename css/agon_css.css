@@ -19,6 +19,9 @@
 	position: absolute;
 	left: 50%;
 }
+.right_pos{
+	float: right;
+}
 .lbl_grote_170{
 	width: 170px;
 	margin-right: 5px;
@@ -62,4 +65,11 @@ hr.style-seven:before { /* Not really supposed to work, but does */
 	left: 0px;
 	right: 0px;*/
 
+}
+.
+.icon{
+  /*display: block;
+  margin-left: auto;
+  margin-right: auto*/
+  background-color: red;
 }
