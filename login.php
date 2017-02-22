@@ -1,6 +1,10 @@
 <?php 
-    // session_start();
+    session_start();
     include('backend/config.php');
+
+    if(isset($_SESSION['user_id'])) {
+        echo $_SESSION['user_id'];
+    }
 
     if(isset($_POST['login'])) {
         
@@ -13,6 +17,11 @@
             $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
             $query = $con->query($sql);
             if($query->num_rows == 1) {
+
+                $result = $query->fetch_assoc();
+
+                $_SESSION['user_id'] = $result['id'];
+
                 header("location: menu.php");
             } else if($query->num_rows == 0) {
                 echo "Je bestaat niet MANNE";

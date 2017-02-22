@@ -110,6 +110,7 @@ CREATE TABLE `users` (
   `lastname` varchar(45) NOT NULL,
   `gender` varchar(6) NOT NULL,
   `district` varchar(45) NOT NULL,
+  `married` varchar(45) DEFAULT 'no',
   `spouse` varchar(255) NOT NULL,
   `birth_date` date NOT NULL,
   `birth_place` varchar(100) NOT NULL,
@@ -135,7 +136,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'8Q1025','Timothy','Pocorni','male','Wanica','N/A','1998-02-14','Paramaribo','10','Billitonstraat',23,'l','Nieuwe Grond','8987273','tim.poco01@gmail.com','timmy1420','timmy1420',19.81,1,'2017-02-09 02:19:32'),(2,'84FIGJ','Agon','Emanuel','male','Wanica','N/A','1995-10-12','Paramaribo','12','Ergens',89,'','','','','','',10.25,0,'2017-02-15 21:06:52');
+INSERT INTO `users` VALUES (1,'8Q1025','Timothy','Pocorni','male','Wanica','no','N/A','1998-02-14','Paramaribo','10','Billitonstraat',23,'l','Nieuwe Grond','8987273','tim.poco@hotmail.com','timmy1420','timmy1420',0,0,'2017-02-09 02:19:32'),(2,'84FIGJ','Agon','Emanuel','male','Wanica','no','N/A','1995-10-12','Paramaribo Ver','12','Ergens',89,'','','','','','',0,0,'2017-02-15 21:06:52');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -148,4 +149,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-16  8:13:24
+-- Dump completed on 2017-02-22 16:55:55
