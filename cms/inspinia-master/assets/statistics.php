@@ -61,15 +61,13 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
-                        <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
-                             </span>
+                        <div class="dropdown profile-element">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                             </span></span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">CMS Admin</strong>
+                             </span>  </span> </a>
                         </div>
                         <div class="logo-element">
-                            IN+
+                            CBB+
                         </div>
                     </li>
                     <li>
