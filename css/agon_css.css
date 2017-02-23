@@ -73,3 +73,7 @@ hr.style-seven:before { /* Not really supposed to work, but does */
   margin-right: auto*/
   background-color: red;
 }
+.stempel{
+	position: absolute;
+	bottom: 100px;
+}

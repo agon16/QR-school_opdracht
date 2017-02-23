@@ -114,6 +114,9 @@ $con->close(); //Close connection
                 <p class="center"><label class="hoofd_letter lbl_grote_170" style="
     margin-right: 5px;"">Datum van afgifte</label><span><?php echo $current_date; ?></span></p>
             </div>
+            <div class="stempel">
+                <img src="img/stempel.png">
+            </div>
         </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
