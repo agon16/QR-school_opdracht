@@ -63,7 +63,7 @@ $con->close(); //Close connection
               <p>Paspoort aanvragen</p>
             </label>
           </p>
-          <p class="right_pos"><label><input type="checkbox" id="request_birth_cert">Geboorteakte aanvragen</label></p>
+          <p class="right_pos"><label id="birth"><input type="checkbox" id="request_birth_cert">Geboorteakte aanvragen</label></p>
         </div>
         <button id="send" class="btn btn-primary btn-lg btn-block">Verzoek versturen</button>
     </div>
@@ -83,7 +83,7 @@ $con->close(); //Close connection
         }
       });
 
-      $('#request_birth_cert').on('mouseup', function() {
+      $('#birth').on('mouseup', function() {
         var elem = document.getElementById('request_birth_cert');
         if(elem.hasAttribute("checked") == true) {
           elem.removeAttribute("checked");

@@ -1,4 +1,5 @@
-<?php 
+<?php
+
     session_start();
     include('backend/config.php');
 
@@ -24,9 +25,18 @@
 
                 header("location: menu.php");
             } else if($query->num_rows == 0) {
-                echo "Je bestaat niet MANNE";
+                $alertMsg = '<div class="alert alert-warning" role="alert">
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Fout melding!:</span>
+                      Inlog gegevens niet juist
+                    </div>';
             } else {
-                echo mysqli_error($con);
+                // echo mysqli_error($con);
+                $alertMsg = '<div class="alert alert-danger" role="alert">
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Fout melding!:</span>
+                      Systeem melding'.mysqli_error($con).'
+                    </div>';
             }
         }
 
@@ -101,8 +111,15 @@
 <div class=" panel pull-right pan">
   <div class="panel-body panstuff">
     <img src="Panem_Symbol.png" width="340" class="img-responsive center-block"></br>
+
+        <?php 
+            if(isset($alertMsg)) {
+                echo $alertMsg;
+            } 
+        ?>
     
         <h2> Log ook in met de QR-Code</h2></br>
+
 
     <button class="btn btn-default" data-toggle="modal" data-target="#myModal" id="scan_init">Scan QR-Code</button>
     <button class="btn btn-default" type="file" id="qr_upload">Upload QR-Code</button>
