@@ -14,8 +14,9 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css.map">
     <link rel="stylesheet" type="text/css" href="css/my_css.css">
+    <link rel="stylesheet" type="text/css" href="css/Inlogcss.css">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>HOME</title>
+    <title>Identify Me || Home</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -42,23 +43,29 @@
     <div id="wrapper" class="active">
     <div id="wrapper">
         <div class="overlay"></div>
-    <p style="text-align: center;"><img src="img/profile-icon-png-profiles-13.png"  class="img-responsive center-block" width="200"></p><center><h1>Gebruiker instructies</h1></center>
-    <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+        <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
                 <span class="hamb-top"></span>
                 <span class="hamb-middle"></span>
                 <span class="hamb-bottom"></span>
             </button>
-            <div class="column-layout">
-                <div class="main-column">
-                    
-                    
-                        <h2>Welcome</h2>
-                        <p>klik op de die verticale strepen links boven uw scherm. Wanneer u daarop geklikt heeft gaat de navigatie balk open en ziet u een paar opties klik op welke u nodig heeft zo niet klik de klik op de zwarte ster naast de navigatie balk en sluit hem.                          
-                    </div>
+            <div class="main_div"></div>
+            <center style="
+    background-color: white;
+    margin: 0 200px;
+    height: 400px;
+    position: absolute;
+    top: 20%;
+">
+                <img src="img/profile-icon-png-profiles-13.png"  class="img-responsive center-block" width="200"></p>
+                <h1>Gebruiker instructies</h1>
+                <div class="main-column" class="test_agon">
+                        
+                        <h3 id="thema">Uw burgerzaken thuis</h3>
+                            <p id="instructies">Klik op de die verticale strepen links boven het scherm. Doe de keuze tussen: Passpoort en geboorteakte aanvraag en uittreksel uitprinten. </p> 
+
                 </div>
-            </div>
+            </center>                      
+
         </div>
         <!-- /#page-content-wrapper -->
     
@@ -68,28 +75,30 @@
                 <li class="sidebar-brand">
                     <a href="#"><i class="fa fa-qrcode" aria-hidden="true"></i>&nbsp; Identify me </a> 
                 </li>
+                <li class="sidebar-brand">
+                    <p style="color: white; text-align: center;"><label>SRD</label><span>200,-</span></p>
+                </li>
             
                 <li>
-                    <a href="betalingen.html"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp; Betalingen </a>
-                </li>
-                <li>
-                    <a href="passpoort.html"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp; Passpoort aanvraag </a>
-                </li>
-                <li>
-                <a href="familie.html"><i class="fa fa-address-book-o" aria-hidden="true"></i>&nbsp; Familieboek aanvraag </a>
-
+                    <a href="aanvragen.php"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp; Passpoort en geboorteakte aanvraag</a>
                 </li>
                     
                 <li>
-                <a href="uittreksel.html"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp; uittreksel </a>
+                <a href="uittreksel.php"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp; uittreksel aanvraag </a>
                     
                 </li>
-                <li>
-                    <a href="homescan.html"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; log out </a>
+               
+                <br>
+                <br>
+                <br>
+                <br><!-- 
+                 <li>
+                   <button type="button" class="btn btn-danger" >Log out</button>
 
-                </li>
-                <li>
-                   <button onclick="myFunction()">Print</button>
+                </li> -->
+                 <li>
+                    <button type="button" class="btn btn-danger" style="width: 100%;">Log out</button>
+
                 </li>
             </ul>
         </nav>

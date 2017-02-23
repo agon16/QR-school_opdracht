@@ -29,11 +29,11 @@ animation: imageAnimation 15s linear infinite 0s;
 }
 .main  > figure:nth-child(2){
 	animation-delay: 5s;
-	background-image: url('../img/download.jpg');
+	background-image: url('../img/pexels-photo-1093711.jpg');
 }
 .main  > figure:nth-child(3){
 	animation-delay: 10s;
-	background-image: url('../img/surinamebanner-javanese-940x400.jpg');}
+	background-image: url('../img/91oaqhtbhva-alex-robert.jpg');}
 
 /*.main > figure:nth-child(4) {
   animation-delay: 18s;
@@ -113,15 +113,17 @@ animation-duration: 2s;
 
 }
 
-
-.navbar{
+.navbar-fixed-top {
 	position: absolute;
-	background-color: #95a5a6;
-	height: 11%;
 	
-
-
 }
+
+.navbar-fixed-top {
+    background-color: rgba(55,59,64, 0.70);
+	height: 11%;
+}
+
+
 .nav p {
 	position: absolute;
 	color: white;
@@ -211,7 +213,7 @@ animation-duration: 2s;
 }
 /*test*/
 @media screen and (max-width: 480px) {
-	body{background-image: url('../img/DSC_0121.jpg');
+	body{
 	 -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -223,7 +225,7 @@ animation-duration: 2s;
 
     .pan{
     	position: absolute;
-	top: 25%;
+	top: 35%;
 	left:14%;
 	opacity: 0.8;
 	width: 73%;
@@ -241,5 +243,22 @@ animation-duration: 2s;
 		visibility: hidden;
 	}
 
+	.form{
+	 position: absolute;
+    /* display: inline; */
+    left: 5%;
+    top:105%;
+
 }
+
+.main_div{
+	    background-color: white;
+    margin-left: 100px;
+    margin-right: 100px;
+    position: absolute;
+    /* top: 0; */
+    /* right: 0; */
+    /* left: 0; */
+    /* bottom: 0; */
+    top: 20%;
 }

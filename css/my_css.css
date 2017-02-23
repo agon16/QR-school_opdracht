@@ -1,15 +1,18 @@
 
+.main_info{
+  background-color: white;
+}
 .background_color{
     background-color: #ecf0f1;
 }
-.column-layout{
+/*.column-layout{
     max-width: center;
     background-color: #FFF;
     margin: 40 auto 0 auto;
     line-height: 1.65;
     padding: 20px 400px;
     
-}
+}*/
 
 .jumbotron{
 	background-color: #95a5a6!important;
