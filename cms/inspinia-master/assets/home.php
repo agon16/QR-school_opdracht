@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Dashboard</title>
+    <title>CBB Admin</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -117,19 +117,13 @@
                     $active = $row["active"];
                     $status = $row["active"];
                     if($active == 0){
-                        $active = "Inactive";
+                        $active = "<span class='label label-danger'>Inactive</span>";
                     }
                     elseif ($active == 1) {
-                        $active = "Active";
+                        $active = "<span class='label label-primary'>Active</span>";
                     }
 
                     $generate = $active;
-                    if($status == 0){
-                        $generate = "<button type='button' class='btn btn-w-m btn-danger'>Generate</button>";
-                    }
-                    elseif ($status == 1) {
-                        $generate = " <button type='button' class='btn btn-w-m btn-success'>Re-generate</button>";
-                    }
 
 
                     echo "<tr>
@@ -143,7 +137,7 @@
                             ".$active."
                         </td>
                         <td>
-                            ".$generate."
+                            <a href='user_detail.php?id=".$row["id"]."' class='btn btn-primary'>Explore</a>
                         </td>
                     </tr>";
                 }
@@ -210,17 +204,6 @@
 
     <script>
         $(document).ready(function() {
-            setTimeout(function() {
-                toastr.options = {
-                    closeButton: true,
-                    progressBar: true,
-                    showMethod: 'slideDown',
-                    timeOut: 4000
-                };
-                toastr.success('CMS van CBB', 'Welcome to identify me');
-
-            }, 1300);
-
 
             var data1 = [
                 [0,4],[1,8],[2,5],[3,10],[4,4],[5,16],[6,5],[7,11],[8,6],[9,11],[10,30],[11,10],[12,13],[13,4],[14,3],[15,3],[16,6]
