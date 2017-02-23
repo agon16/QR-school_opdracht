@@ -50,13 +50,19 @@
                         </div>
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-user"></i> <span class="nav-label">user</a>
+                        <a href="home.php"><i class="fa fa-user"></i> <span class="nav-label">user</a>
                     </li>
                     <li>
                         <a href="qrregistreted.php"><i class="fa fa-qrcode"></i> <span class="nav-label">Qr code registrated</a>
                     </li>
                     <li>
-                        <a href="user_modification.php"><i class="fa fa-pencil"></i> <span class="nav-label">user Modification</a>
+                        <a href="log.php"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Log</a>
+                    </li>
+                    <li>
+                        <a href="statistics.php"><i class="fa fa-line-chart"></i> <span class="nav-label">Statistics</a>
+                    </li>
+                    <li>
+                        <a href="logout.php"><i class="fa fa-sign-out"></i> <span class="nav-label">Log out</a>
                     </li>
                 </ul>
 

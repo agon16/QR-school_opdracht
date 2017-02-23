@@ -1,5 +1,35 @@
 <?php
+
+    session_start();
+
+    if(isset($_SESSION['admin_user_id'])) {
+        $admin_user_id = $_SESSION['admin_user_id'];
+    }
+
+    $admin_user_id = 1;
+
     include '../../../backend/config.php';
+
+    $sql = "SELECT COUNT(id) AS total_users FROM identify_me.users";
+    $query = $con->query($sql);
+    while($result = $query->fetch_assoc()) {
+        $total_users = $result['total_users'];
+    }
+
+    $sql = "SELECT count(id) AS registered_users FROM identify_me.users WHERE active = 1";
+    $query = $con->query($sql);
+    while($result = $query->fetch_assoc()) {
+        $registered_users = $result['registered_users'];
+    }
+
+    $sql = "SELECT last_logged_in FROM identify_me.admins WHERE id='$admin_user_id'";
+    $query = $con->query($sql);
+    while($result = $query->fetch_assoc()) {
+        $last_logged_in = $result['last_logged_in'];
+    }
+    
+    $con->close(); //Close connection
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,14 +66,7 @@
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="mailbox.html">Mailbox</a></li>
-                                <li class="divider"></li>
-                                <li><a href="login.html">Logout</a></li>
-                            </ul>
+                             </span></span> </a>
                         </div>
                         <div class="logo-element">
                             IN+
@@ -82,90 +105,71 @@
         </div>
         </nav>
         </div>
-            <div class="row  border-bottom white-bg dashboard-header">
-            </div>
-        <div class="row">
+        <div class="row  border-bottom white-bg dashboard-header">
+
+        </div>
+        <div class="row white-bg">
             <div class="col-lg-12">
                 <div class="wrapper wrapper-content">
-                        <div class="row"><!--content-->             
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>User</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Firstname </th>
-                                            <th>Lastname </th>
-                                            <th>QR Code registered</th>
-                                            <th>Activation</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-        <?php
-            $sql = "SELECT * FROM users";
-            $result = $con->query($sql);
-
-            if ($result->num_rows > 0) {
-               
-                while($row = $result->fetch_assoc()) {
-                    $active = $row["active"];
-                    $status = $row["active"];
-                    if($active == 0){
-                        $active = "Inactive";
-                    }
-                    elseif ($active == 1) {
-                        $active = "Active";
-                    }
-
-                    $generate = $active;
-                    if($status == 0){
-                        $generate = "<button type='button' class='btn btn-w-m btn-danger'>Generate</button>";
-                    }
-                    elseif ($status == 1) {
-                        $generate = " <button type='button' class='btn btn-w-m btn-success'>Re-generate</button>";
-                    }
-
-
-                    echo "<tr>
-                        <td>".$row["id"]."</td><td>".$row["firstname"]."
-                        </td>
-                        <td>
-                            ".$row["lastname"]."
-                        </td>
-
-                        <td>
-                            ".$active."
-                        </td>
-                        <td>
-                            ".$generate."
-                        </td>
-                    </tr>";
-                }
-                echo "</table>";
-            } else {
-                echo "0 results";
-            }
-            $con->close();
-        ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                        <h2>User details</h2>
+                        <div class="col-md-3">
+                        <ul class="list-group clear-list m-t">
+                            <li class="list-group-item fist-item">
+                                <span class="pull-right">
+                                    <?php echo $total_users; ?>
+                                </span>
+                                <p><label  style="display: inline-block; width: 100px;" class="">Total users</label>:</p>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="pull-right">
+                                    <?php echo $registered_users; ?>
+                                </span>
+                                <p><label  style="display: inline-block; width: 100px;" class="">Registered users</label>:</p>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="pull-right">
+                                    <?php echo $last_logged_in; ?>
+                                </span>
+                                <p><label  style="display: inline-block; width: 100px;" class="">Last logged in</label>:</p>
+                            </li>
+                        </ul>
+                        <br>
+                        
+                        <br>
+                        <br>
+                        <br>
                     </div>
-                </div>
-            </div>
+
                 </div>
             </div>
         </div>
 
         </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Voeg credits toe voor de gebruiker</h4>
+              </div>
+              <div class="modal-body">
+                <!-- <img src="qrcode.jpg" width="150" class="img-responsive center-block"> -->
+                <div align="center">
+                    <p>Geef aan het aantal credits.</p>
+                    <input placeholder="5.25" class="form-control" type="text" name="amount" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 0 || event.charCode == 46'>
+                    <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" name="recharge" class="btn btn-default">Submit</button>
+              </div>
+            </div>
+        </form>
+      </div>
     </div>
 
     <!-- Mainly scripts -->
@@ -210,16 +214,6 @@
 
     <script>
         $(document).ready(function() {
-            setTimeout(function() {
-                toastr.options = {
-                    closeButton: true,
-                    progressBar: true,
-                    showMethod: 'slideDown',
-                    timeOut: 4000
-                };
-                toastr.success('CMS van CBB', 'Welcome to identify me');
-
-            }, 1300);
 
 
             var data1 = [

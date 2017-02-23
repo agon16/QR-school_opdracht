@@ -10,14 +10,14 @@
         $sql = "UPDATE users SET active = 0 WHERE id = '$user_id'";
         $con->query($sql);
 
-        header("Location: index.php");
+        header("Location: home.php");
     } else if(isset($_POST['activate'])) {
 
         $user_id = $_POST['user_id'];
         $sql = "UPDATE users SET active = 1 WHERE id = '$user_id'";
         $con->query($sql);
 
-        header("Location: index.php");
+        header("Location: home.php");
     } else if(isset($_POST['generate'])) {
         $user_id = $_POST['user_id'];
         
@@ -39,7 +39,7 @@
         $sql = "UPDATE users SET credits = '$credits' WHERE id = '$user_id'";
         $con->query($sql);
 
-        header("Location: index.php");
+        header("Location: home.php");
  
     } else if(isset($_GET['id'])) { //If user ID is set in url. Else terminate page
         $user_id = $_GET['id'];
@@ -131,13 +131,19 @@
                         </div>
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-user"></i> <span class="nav-label">Home</a>
+                        <a href="home.php"><i class="fa fa-user"></i> <span class="nav-label">Home</a>
                     </li>
                     <li>
                         <a href="qrregistreted.php"><i class="fa fa-qrcode"></i> <span class="nav-label">Qr code registrated</a>
                     </li>
                     <li>
-                        <a href="user_modification.php"><i class="fa fa-pencil"></i> <span class="nav-label">user Modification</a>
+                        <a href="log.php"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Log</a>
+                    </li>
+                    <li>
+                        <a href="statistics.php"><i class="fa fa-line-chart"></i> <span class="nav-label">Statistics</a>
+                    </li>
+                    <li>
+                        <a href="logout.php"><i class="fa fa-sign-out"></i> <span class="nav-label">Log out</a>
                     </li>
                 </ul>
 

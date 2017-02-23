@@ -92,60 +92,35 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>User</h5>
+                                <h5>Log overview</h5>
                             </div>
                             <div class="ibox-content">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>ID</th>
+                                            <th>User level</th>
                                             <th>Firstname </th>
                                             <th>Lastname </th>
-                                            <th>QR Code registered</th>
-                                            <th>Activation</th>
+                                            <th>Logged in</th>
                                         </tr>
                                         </thead>
                                         <tbody>
         <?php
-            $sql = "SELECT * FROM users";
+            $sql = "SELECT * FROM identify_me.logs INNER JOIN identify_me.users ON users.id = logs.user_id";
             $result = $con->query($sql);
 
             if ($result->num_rows > 0) {
-               
                 while($row = $result->fetch_assoc()) {
-                    $active = $row["active"];
-                    $status = $row["active"];
-                    if($active == 0){
-                        $active = "Inactive";
-                    }
-                    elseif ($active == 1) {
-                        $active = "Active";
-                    }
-
-                    $generate = $active;
-                    if($status == 0){
-                        $generate = "<button type='button' class='btn btn-w-m btn-danger'>Generate</button>";
-                    }
-                    elseif ($status == 1) {
-                        $generate = " <button type='button' class='btn btn-w-m btn-success'>Re-generate</button>";
-                    }
-
 
                     echo "<tr>
-                        <td>".$row["id"]."</td><td>".$row["firstname"]."
-                        </td>
-                        <td>
-                            ".$row["lastname"]."
-                        </td>
-
-                        <td>
-                            ".$active."
-                        </td>
-                        <td>
-                            ".$generate."
-                        </td>
-                    </tr>";
+                            <td>".$row["id_card"]."</td>
+                            <td>".$row["login_type"]."</td>
+                            <td>".$row["firstname"]."</td>
+                            <td>".$row["lastname"]."</td>
+                            <td>".$row["logged_in_at"]."</td>
+                        </tr>";
                 }
                 echo "</table>";
             } else {
