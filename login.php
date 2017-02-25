@@ -44,9 +44,9 @@
 
     if(isset($_GET['qrcode'])) { //Fetch QR Code data from upload qr-code
         $qrcode = $_GET['qrcode'];
-        echo $qrcode;
+        // echo $qrcode;
         $username_encryption = 'enabled';
-        $username_input = '<input type="text" class="form-control" placeholder="Gebruikersnaam" name="username">';
+        $username_input = '<input type="password" value="'.$qrcode.'" class="form-control" placeholder="Gebruikersnaam" name="username">';
     } else {
         $username_encryption = 'disabled';
         $username_input = '<input type="text" class="form-control" placeholder="Gebruikersnaam" name="username">';

@@ -31,7 +31,7 @@ CREATE TABLE `admins` (
   `last_logged_in` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `admins` (
 
 LOCK TABLES `admins` WRITE;
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+INSERT INTO `admins` VALUES (1,'d033e22ae348aeb5660fc2140aec35850c4da997','d033e22ae348aeb5660fc2140aec35850c4da997','2017-02-23 11:13:39','2017-02-23 10:52:27');
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +58,7 @@ CREATE TABLE `logs` (
   `login_type` varchar(10) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,6 +67,7 @@ CREATE TABLE `logs` (
 
 LOCK TABLES `logs` WRITE;
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+INSERT INTO `logs` VALUES (1,1,'2017-02-23 10:01:03','user','2017-02-23 10:01:03');
 /*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +138,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'8Q1025','Timothy','Pocorni','male','Wanica','no','N/A','1998-02-14','Paramaribo','10','Billitonstraat',23,'l','Nieuwe Grond','8987273','tim.poco@hotmail.com','timmy1420','timmy1420',0,0,'2017-02-09 02:19:32'),(2,'84FIGJ','Agon','Emanuel','male','Wanica','no','N/A','1995-10-12','Paramaribo Ver','12','Ergens',89,'','','','','','',0,0,'2017-02-15 21:06:52');
+INSERT INTO `users` VALUES (1,'8Q1025','Timothy','Pocorni','male','Wanica','no','N/A','1998-02-14','Paramaribo','10','Billitonstraat',23,'l','Nieuwe Grond','8987273','timmy1420','timmy1420','timmy1420',10.5,0,'2017-02-09 02:19:32'),(2,'84FIGJ','Agon','Emanuel','male','Wanica','no','N/A','1995-10-12','Paramaribo Ver','12','Ergens',89,'','','','','','',0,0,'2017-02-15 21:06:52');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -149,4 +151,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-22 16:55:55
+-- Dump completed on 2017-02-25  8:33:30

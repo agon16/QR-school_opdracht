@@ -47,7 +47,7 @@ $con->close(); //Close connection
     <![endif]-->
   <body>
     <div class="container">
-        <img style="display: block; margin-left: auto; margin-right: auto;" src="img/Panem_Symbol">
+        <img style="display: block; margin-left: auto; margin-right: auto;" src="Panem_Symbol.png">
         <div class="form-group">
           <label for="inputsm">Telefoon nummer</label>
           <input class="form-control input-sm" type="number" id="replyNumber" min="0" data-bind="value:replyNumber"  placeholder="+5977211511" />

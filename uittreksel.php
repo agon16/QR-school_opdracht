@@ -115,7 +115,7 @@ $con->close(); //Close connection
     margin-right: 5px;"">Datum van afgifte</label><span><?php echo $current_date; ?></span></p>
             </div>
             <div class="stempel">
-                <img src="img/stempel.png">
+                <img src="img/stempel.png" style="height: 100px;position: absolute;left: 55%;">
             </div>
         </div>
 

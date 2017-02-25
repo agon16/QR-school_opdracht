@@ -1,6 +1,19 @@
 <?php 
-
+    
+    session_start();
     include('backend/config.php');
+
+    if(isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id'];
+    }
+
+$sql = "SELECT * FROM users WHERE id = '$user_id'";
+$query = $con->query($sql);
+while( $result = $query->fetch_assoc() ) {
+    $credits = $result['credits'];
+}
+
+$con->close(); //Close connection
 
  ?>
 <!DOCTYPE html>
@@ -14,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css.map">
     <link rel="stylesheet" type="text/css" href="css/my_css.css">
-    <link rel="stylesheet" type="text/css" href="css/Inlogcss.css">
+    <link rel="stylesheet" type="text/css" href="css/inlogcss.css">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Identify Me || Home</title>
 
@@ -76,7 +89,7 @@
                     <a href="#"><i class="fa fa-qrcode" aria-hidden="true"></i>&nbsp; Identify me </a> 
                 </li>
                 <li class="sidebar-brand">
-                    <p style="color: white; text-align: center;"><label>SRD</label><span>200,-</span></p>
+                    <p style="color: white; text-align: center;"><label>SRD</label><span><?php echo $credits; ?></span></p>
                 </li>
             
                 <li>
@@ -97,7 +110,7 @@
 
                 </li> -->
                  <li>
-                    <button type="button" class="btn btn-danger" style="width: 100%;">Log out</button>
+                    <button onclick="window.location = 'login.php';" class="btn btn-danger" style="width: 100%;">Log out</button>
 
                 </li>
             </ul>
